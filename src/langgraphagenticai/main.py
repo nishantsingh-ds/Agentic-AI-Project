@@ -1,7 +1,7 @@
 import streamlit as st
 import json
 from src.langgraphagenticai.ui.streamlitui.loadui import LoadStreamlitUI
-from src.langgraphagenticai.LLMS.groqllm import GroqLLM
+from src.langgraphagenticai.LLMs.groqllm import GroqLLM
 from src.langgraphagenticai.graph.graph_builder import GraphBuilder
 from src.langgraphagenticai.ui.streamlitui.display_result import DisplayResultStreamlit
 
