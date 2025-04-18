@@ -24,11 +24,21 @@ class LoadStreamlitUI:
   
 
     def load_streamlit_ui(self):
-        st.set_page_config(page_title= "🤖 " + self.config.get_page_title(), layout="wide")
-        st.header("🤖 " + self.config.get_page_title())
+        # grab the raw title (might be None)
+        raw_title = self.config.get_page_title()
+        # fallback to empty string if None
+        safe_title = raw_title or ""
+        # build your full title, trimming any accidental leading/trailing spaces
+        full_title = f"🤖 {safe_title}".strip()
+
+        # now both calls use a guaranteed str
+        st.set_page_config(page_title=full_title, layout="wide")
+        st.header(full_title)
+
         st.session_state.timeframe = ''
         st.session_state.IsFetchButtonClicked = False
         st.session_state.IsSDLC = False
+
         
         
 
