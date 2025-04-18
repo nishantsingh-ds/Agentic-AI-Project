@@ -14,6 +14,12 @@ def load_langgraph_agenticai_app():
     implementing exception handling for robustness.
     """
    
+   # Initialize the session_state keys you’re going to read later ──
+    st.session_state.setdefault("IsFetchButtonClicked", False)
+    st.session_state.setdefault("IsSDLC",              False)
+    st.session_state.setdefault("timeframe",           "")
+
+
     # Load UI
     ui = LoadStreamlitUI()
     user_input = ui.load_streamlit_ui()
@@ -23,7 +29,7 @@ def load_langgraph_agenticai_app():
         return
 
     # Text input for user message
-    if st.session_state.get("IsFetchButtonClicked", False):
+    if st.session_state.IsFetchButtonClicked:
         user_message = st.session_state.timeframe 
     else :
         user_message = st.chat_input("Enter your message:")
