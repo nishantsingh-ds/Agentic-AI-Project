@@ -2,18 +2,21 @@ from configparser import ConfigParser
 
 class Config:
     def __init__(self, config_file=r"E:\LANGGRAPHPROJECT\src\langgraphagenticai\ui\uiconfigfile.ini"):
-        self.config=ConfigParser()
-        self.config.read(config_file)
+        self.parser = configparser.ConfigParser()
+        self.parser.read(config_file)
 
     def get_llm_options(self):
-        return self.config["DEFAULT"].get("LLM_OPTIONS").split(", ")
-    
+        raw = self.parser.get("DEFAULT", "LLM_OPTIONS", fallback="")
+        # split on commas, strip whitespace, drop any empty strings
+        return [opt.strip() for opt in raw.split(",") if opt.strip()]
+
     def get_usecase_options(self):
-        return self.config["DEFAULT"].get("USECASE_OPTIONS").split(", ")
-    
+        raw = self.parser.get("DEFAULT", "USECASE_OPTIONS", fallback="")
+        return [opt.strip() for opt in raw.split(",") if opt.strip()]
+
     def get_groq_model_options(self):
-        return self.config["DEFAULT"].get("GROQ_MODEL_OPTIONS").split(", ")
+        raw = self.parser.get("DEFAULT", "GROQ_MODEL_OPTIONS", fallback="")
+        return [opt.strip() for opt in raw.split(",") if opt.strip()]
 
     def get_page_title(self):
-        return self.config["DEFAULT"].get("PAGE_TITLE")
-    
+        return self.parser.get("UI", "page_title", fallback="")
