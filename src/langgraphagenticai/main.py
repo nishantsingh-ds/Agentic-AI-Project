@@ -23,7 +23,7 @@ def load_langgraph_agenticai_app():
         return
 
     # Text input for user message
-    if st.session_state.IsFetchButtonClicked:
+    if st.session_state.get("IsFetchButtonClicked", False):
         user_message = st.session_state.timeframe 
     else :
         user_message = st.chat_input("Enter your message:")
