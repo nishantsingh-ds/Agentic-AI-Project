@@ -23,22 +23,13 @@ class LoadStreamlitUI:
     }
   
 
+
     def load_streamlit_ui(self):
-        # pull the (possibly None) title from config
-        raw_title = self.config.get_page_title()
-        # if it was None, use empty string
-        safe_title = raw_title or ""
-        # build your full Streamlit title
-        full_title = f"🤖 {safe_title}".strip()
-
-        # >>> REPLACE your old st.set_page_config / st.header calls with these:
-        st.set_page_config(page_title=full_title, layout="wide")
-        st.header(full_title)
-
+        st.set_page_config(page_title= "🤖 " + self.config.get_page_title(), layout="wide")
+        st.header("🤖 " + self.config.get_page_title())
         st.session_state.timeframe = ''
         st.session_state.IsFetchButtonClicked = False
         st.session_state.IsSDLC = False
-
         
         
 
