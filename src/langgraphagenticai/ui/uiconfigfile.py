@@ -2,7 +2,12 @@ from configparser import ConfigParser
 
 class Config:
     def __init__(self, config_file=r"E:\LANGGRAPHPROJECT\src\langgraphagenticai\ui\uiconfigfile.ini"):
-        self.parser = configparser.ConfigParser()
+        if config_file is None:
+            # compute the path next to this file
+            here = os.path.dirname(__file__)
+            config_file = os.path.join(here, "uiconfigfile.ini")
+
+        self.parser = ConfigParser()
         self.parser.read(config_file)
 
     def get_llm_options(self):
