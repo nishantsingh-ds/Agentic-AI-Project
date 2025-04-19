@@ -1,19 +1,28 @@
-from configparser import ConfigParser
+import configparser
+import os
 
 class Config:
-    def __init__(self, config_file=r"E:\LANGGRAPHPROJECT\src\langgraphagenticai\ui\uiconfigfile.ini"):
-        self.config=ConfigParser()
-        self.config.read(config_file)
+    def __init__(self, config_file=None):
+        if config_file is None:
+            here = os.path.dirname(__file__)
+            config_file = os.path.join(here, "uiconfigfile.ini")
+        self.parser = configparser.ConfigParser()
+        self.parser.read(config_file)
 
-    def get_llm_options(self):
-        return self.config["DEFAULT"].get("LLM_OPTIONS").split(", ")
-    
-    def get_usecase_options(self):
-        return self.config["DEFAULT"].get("USECASE_OPTIONS").split(", ")
-    
-    def get_groq_model_options(self):
-        return self.config["DEFAULT"].get("GROQ_MODEL_OPTIONS").split(", ")
+    def _split_list(self, section: str, key: str) -> list[str]:
+        raw = self.parser.get(section, key, fallback="")
+        # Split on commas, strip whitespace, drop empties
+        return [item.strip() for item in raw.split(",") if item.strip()]
 
-    def get_page_title(self):
-        return self.config["DEFAULT"].get("PAGE_TITLE")
-    
+    def get_llm_options(self) -> list[str]:
+        return self._split_list("DEFAULT", "LLM_OPTIONS")
+
+    def get_usecase_options(self) -> list[str]:
+        return self._split_list("DEFAULT", "USECASE_OPTIONS")
+
+    def get_groq_model_options(self) -> list[str]:
+        return self._split_list("DEFAULT", "GROQ_MODEL_OPTIONS")
+
+    def get_page_title(self) -> str:
+        # Always returns a string
+        return self.parser.get("UI", "page_title", fallback="")
