@@ -2,6 +2,8 @@ import streamlit as st
 import os
 from datetime import date
 
+from langchain.memory import ConversationBufferMemory
+from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import AIMessage,HumanMessage
 from src.langgraphagenticai.ui.uiconfigfile import Config
 
@@ -10,6 +12,7 @@ class LoadStreamlitUI:
     def __init__(self):
         self.config =  Config() # config
         self.user_controls = {}
+        # self.memory = None
 
     def initialize_session(self):
         return {
@@ -31,6 +34,10 @@ class LoadStreamlitUI:
         st.session_state.IsFetchButtonClicked = False
         st.session_state.IsSDLC = False
         
+        # ✅ Ensure memory is stored in session_state
+        if "memory" not in st.session_state:
+            st.session_state.memory = MemorySaver()
+            # self.memory = st.session_state.memory
         
 
         with st.sidebar:
@@ -69,4 +76,4 @@ class LoadStreamlitUI:
             
             
         
-        return self.user_controls
+        return self.user_controls, st.session_state.memory
