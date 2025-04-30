@@ -19,6 +19,10 @@ Supports both a basic chatbot and a tool-augmented agent using a dynamic Streaml
 
 ---
 
+📸 Screenshot
+![Agentic AI Demo](assets/image.png)
+
+---
 ## 🌐 Live Demo
 
 [![Open in Hugging Face](https://img.shields.io/badge/Live-Huggingface-blue?logo=huggingface)](https://huggingface.co/spaces/nishant-ds/Agentic-AI)
@@ -91,9 +95,6 @@ This repo includes a GitHub Actions workflow to:
 - Persona-based chatbot switching
 - Conversational memory with context carry-over
 - REST API endpoints for programmatic access
-
-📸 Screenshot
-![Agentic AI Demo](images/demo_screenshot.png)
 
 🙌 Acknowledgements
 - LangGraph
