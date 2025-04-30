@@ -55,8 +55,8 @@ Supports both a basic chatbot and a tool-augmented agent using a dynamic Streaml
 🚀 Getting Started Locally
 ```bash
 # 1. Clone the repo
-git clone https://github.com/nishantsingh-ds/langgraph-agentic-ai.git
-cd langgraph-agentic-ai
+git clone https://github.com/nishantsingh-ds/langgraph-agentic-ai-chatbot.git
+cd langgraph-agentic-ai-chatbot
 
 # 2. Set up environment
 python -m venv venv
